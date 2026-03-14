@@ -29,11 +29,13 @@ final class PersistedGame {
 }
 
 enum GameStore {
-    /// Save or update a game state.
     static func save(_ game: GameState, context: ModelContext) {
         do {
+            let targetId = game.id
             let descriptor = FetchDescriptor<PersistedGame>(
-                predicate: #Predicate { $0.gameId == game.id }
+                predicate: #Predicate<PersistedGame> { persisted in
+                    persisted.gameId == targetId
+                }
             )
             if let existing = try context.fetch(descriptor).first {
                 try existing.update(from: game)
@@ -47,11 +49,12 @@ enum GameStore {
         }
     }
 
-    /// Load the most recent in-progress game, if any.
     static func loadInProgressGame(context: ModelContext) -> GameState? {
         do {
             var descriptor = FetchDescriptor<PersistedGame>(
-                predicate: #Predicate { !$0.isComplete },
+                predicate: #Predicate<PersistedGame> { persisted in
+                    persisted.isComplete == false
+                },
                 sortBy: [SortDescriptor(\.updatedAt, order: .reverse)]
             )
             descriptor.fetchLimit = 1
@@ -62,11 +65,13 @@ enum GameStore {
         }
     }
 
-    /// Delete a persisted game.
     static func delete(gameId: UUID, context: ModelContext) {
         do {
+            let targetId = gameId
             let descriptor = FetchDescriptor<PersistedGame>(
-                predicate: #Predicate { $0.gameId == gameId }
+                predicate: #Predicate<PersistedGame> { persisted in
+                    persisted.gameId == targetId
+                }
             )
             if let existing = try context.fetch(descriptor).first {
                 context.delete(existing)
