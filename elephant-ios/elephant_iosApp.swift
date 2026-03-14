@@ -24,11 +24,20 @@ struct elephant_iosApp: App {
 struct RootView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var viewModel: GameViewModel?
+    @State private var showTutorial = false
 
     var body: some View {
         Group {
             if let viewModel {
                 GameScreenView(viewModel: viewModel)
+                    .overlay {
+                        if showTutorial {
+                            TutorialOverlay {
+                                showTutorial = false
+                                UserPreferences.hasCompletedTutorial = true
+                            }
+                        }
+                    }
             } else {
                 ProgressView()
             }
@@ -44,11 +53,18 @@ struct RootView: View {
     }
 
     private func loadOrCreateGame() {
+        let isFirstLaunch = UserPreferences.isFirstLaunch
+
         if let savedGame = GameStore.loadInProgressGame(context: modelContext) {
             viewModel = GameViewModel(game: savedGame)
         } else {
             let game = GameEngine.newBotGame(playerId: "player1", playerName: "You")
             viewModel = GameViewModel(game: game)
+        }
+
+        if isFirstLaunch {
+            showTutorial = true
+            UserPreferences.markLaunched()
         }
     }
 }
