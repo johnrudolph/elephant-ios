@@ -4,6 +4,7 @@ import SwiftUI
 final class GameViewModel {
     private(set) var game: GameState
     private(set) var isAnimating = false
+    private let audio = AudioManager.shared
 
     var board: Board { game.board }
     var elephantSpace: Int { game.board.elephantSpace }
@@ -60,22 +61,24 @@ final class GameViewModel {
         guard isPlayerTurn, isTilePhase else { return }
         isAnimating = true
         game = GameEngine.placeTile(slide: slide, game: game)
+        audio.playSlide()
 
         Task { @MainActor in
             try? await Task.sleep(for: .milliseconds(700))
             isAnimating = false
 
-            if !isComplete {
-                // If it's now the elephant phase, wait for player input
-                // If game ended, do nothing
+            if isComplete {
+                playEndGameSound()
             }
         }
     }
 
     func moveElephant(to space: Int) {
         guard isPlayerTurn, isElephantPhase else { return }
+        let previousSpace = elephantSpace
         isAnimating = true
         game = GameEngine.moveElephant(to: space, game: game)
+        if space != previousSpace { audio.playElephant() }
 
         Task { @MainActor in
             try? await Task.sleep(for: .milliseconds(700))
@@ -102,15 +105,19 @@ final class GameViewModel {
 
             // Place tile
             game = GameEngine.placeTile(slide: move.slide, game: game)
+            audio.playSlide()
             try? await Task.sleep(for: .milliseconds(700))
 
             guard !isComplete else {
                 isAnimating = false
+                playEndGameSound()
                 return
             }
 
             // Move elephant
+            let prevElephant = game.board.elephantSpace
             game = GameEngine.moveElephant(to: move.elephantMove, game: game)
+            if move.elephantMove != prevElephant { audio.playElephant() }
             try? await Task.sleep(for: .milliseconds(700))
 
             isAnimating = false
@@ -126,6 +133,14 @@ final class GameViewModel {
         let playerId = game.player1.id
         let playerName = game.player1.name
         game = GameEngine.newBotGame(playerId: playerId, playerName: playerName)
+    }
+
+    private func playEndGameSound() {
+        if victorIds.contains(game.player1.id) {
+            audio.playVictory()
+        } else if !victorIds.isEmpty {
+            audio.playDefeat()
+        }
     }
 
     // MARK: - Layout
