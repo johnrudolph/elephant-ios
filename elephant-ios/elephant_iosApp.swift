@@ -2,23 +2,21 @@ import SwiftUI
 
 @main
 struct elephant_iosApp: App {
-    @State private var viewModel = GameViewModel(
-        game: GameEngine.newBotGame(playerId: "player1", playerName: "You")
-    )
-    @State private var showTutorial = UserPreferences.isFirstLaunch
+    @State private var viewModel: GameViewModel = {
+        let isFirstLaunch = UserPreferences.isFirstLaunch
+        if isFirstLaunch {
+            UserPreferences.markLaunched()
+            let tutorial = TutorialManager()
+            let game = TutorialManager.createTutorialGame(playerId: "player1", playerName: "You")
+            return GameViewModel(game: game, tutorial: tutorial)
+        } else {
+            return GameViewModel(game: GameEngine.newBotGame(playerId: "player1", playerName: "You"))
+        }
+    }()
 
     var body: some Scene {
         WindowGroup {
             GameScreenView(viewModel: viewModel)
-                .overlay {
-                    if showTutorial {
-                        TutorialOverlay {
-                            showTutorial = false
-                            UserPreferences.hasCompletedTutorial = true
-                            UserPreferences.markLaunched()
-                        }
-                    }
-                }
         }
     }
 }

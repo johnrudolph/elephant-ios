@@ -15,9 +15,11 @@ struct GameBoardView: View {
             gridBackground
             tilesLayer
 
+            // Elephant with shake feedback
             ElephantView(cellSize: cellSize)
                 .position(pointFor(viewModel.elephantSpace))
                 .animation(.easeInOut(duration: 0.7), value: viewModel.elephantSpace)
+                .modifier(ShakeModifier(shaking: viewModel.blockedFeedbackActive && viewModel.blockedPath.contains(viewModel.elephantSpace)))
                 .allowsHitTesting(false)
 
             if viewModel.isElephantPhase {
@@ -28,6 +30,12 @@ struct GameBoardView: View {
                 ) { space in
                     viewModel.moveElephant(to: space)
                 }
+            }
+
+            // Tutorial slide hint arrow
+            if let hint = viewModel.tutorial?.currentStep.highlightHint,
+               case .slideArrow(let space, let direction) = hint {
+                slideHintArrow(space: space, direction: direction)
             }
         }
         .frame(width: boardSize, height: boardSize)
@@ -71,9 +79,41 @@ struct GameBoardView: View {
                         cellSize: cellSize
                     )
                     .position(pointFor(space))
+                    .modifier(ShakeModifier(shaking: viewModel.blockedFeedbackActive && viewModel.blockedPath.contains(space)))
                     .allowsHitTesting(false)
                 }
             }
+        }
+    }
+
+    // MARK: - Tutorial Hint Arrow
+
+    private func slideHintArrow(space: Int, direction: Direction) -> some View {
+        let arrowPoint = arrowPosition(space: space, direction: direction)
+        let rotation: Angle = switch direction {
+        case .down: .degrees(90)
+        case .up: .degrees(-90)
+        case .right: .degrees(0)
+        case .left: .degrees(180)
+        }
+
+        return Image(systemName: "arrow.right.circle.fill")
+            .font(.title)
+            .foregroundStyle(Color("PlayerOrange"))
+            .rotationEffect(rotation)
+            .position(arrowPoint)
+            .opacity(0.8)
+            .modifier(PulseModifier())
+    }
+
+    private func arrowPosition(space: Int, direction: Direction) -> CGPoint {
+        let center = pointFor(space)
+        let offset: CGFloat = cellSize * 0.7
+        switch direction {
+        case .down: return CGPoint(x: center.x, y: center.y - offset)
+        case .up: return CGPoint(x: center.x, y: center.y + offset)
+        case .right: return CGPoint(x: center.x - offset, y: center.y)
+        case .left: return CGPoint(x: center.x + offset, y: center.y)
         }
     }
 
@@ -88,7 +128,9 @@ struct GameBoardView: View {
     // MARK: - Slide Gesture
 
     private func handleDrag(_ value: DragGesture.Value) {
-        guard viewModel.isPlayerTurn, viewModel.isTilePhase else { return }
+        guard viewModel.isPlayerTurn else { return }
+        // Allow swipes even in "try blocked" tutorial steps
+        guard viewModel.isTilePhase || (viewModel.tutorial?.blockedSlideToTry != nil && viewModel.phase == .placeTile) else { return }
 
         let start = value.startLocation
         let translation = value.translation
@@ -118,9 +160,37 @@ struct GameBoardView: View {
             slide = Slide(entrySpace: Board.space(row: 3, col: col), direction: .up)
         }
 
-        if viewModel.validSlides.contains(slide) {
-            viewModel.placeTile(slide: slide)
-        }
+        viewModel.attemptSlide(slide: slide)
+    }
+}
+
+// MARK: - Shake Animation
+
+struct ShakeModifier: ViewModifier {
+    let shaking: Bool
+
+    func body(content: Content) -> some View {
+        content
+            .offset(x: shaking ? -4 : 0)
+            .animation(
+                shaking
+                    ? .easeInOut(duration: 0.08).repeatCount(5, autoreverses: true)
+                    : .default,
+                value: shaking
+            )
+    }
+}
+
+// MARK: - Pulse Animation
+
+struct PulseModifier: ViewModifier {
+    @State private var isPulsing = false
+
+    func body(content: Content) -> some View {
+        content
+            .scaleEffect(isPulsing ? 1.15 : 1.0)
+            .animation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true), value: isPulsing)
+            .onAppear { isPulsing = true }
     }
 }
 
