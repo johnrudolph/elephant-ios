@@ -45,11 +45,11 @@ struct PlayerInfoCard: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 10)
-        .background(
+        .background {
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color(.systemBackground))
+                .fill(.background)
                 .shadow(color: .black.opacity(isCurrentTurn ? 0.15 : 0.05), radius: isCurrentTurn ? 4 : 1)
-        )
+        }
         .overlay(
             RoundedRectangle(cornerRadius: 12)
                 .stroke(
