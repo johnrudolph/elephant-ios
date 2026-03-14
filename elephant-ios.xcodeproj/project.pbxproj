@@ -27,6 +27,7 @@
 		36C0AD402F65B10000AB835C /* BotAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD3F2F65B10000AB835C /* BotAI.swift */; };
 		36C0ADC02F65B70000AB835C /* TutorialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0ADBF2F65B70000AB835C /* TutorialManager.swift */; };
 		36C0AD702F65B20000AB835C /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD6F2F65B20000AB835C /* AudioManager.swift */; };
+		36C0ADD02F65B80000AB835C /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0ADCF2F65B80000AB835C /* MainMenuView.swift */; };
 		36C0AD902F65B40000AB835C /* VictoryShapeIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD8F2F65B40000AB835C /* VictoryShapeIcon.swift */; };
 		36C0AD922F65B40000AB835C /* GameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD912F65B40000AB835C /* GameStore.swift */; };
 		36C0ADA02F65B50000AB835C /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD9F2F65B50000AB835C /* UserPreferences.swift */; };
@@ -83,6 +84,7 @@
 		36C0AD3F2F65B10000AB835C /* BotAI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotAI.swift; sourceTree = "<group>"; };
 		36C0ADBF2F65B70000AB835C /* TutorialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialManager.swift; sourceTree = "<group>"; };
 		36C0AD6F2F65B20000AB835C /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		36C0ADCF2F65B80000AB835C /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		36C0AD8F2F65B40000AB835C /* VictoryShapeIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryShapeIcon.swift; sourceTree = "<group>"; };
 		36C0AD912F65B40000AB835C /* GameStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
 		36C0AD9F2F65B50000AB835C /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				36C0AD5F2F65AE6000AB835C /* Game */,
+				36C0ADD12F65B80000AB835C /* Home */,
 				36C0AD932F65B40000AB835C /* Components */,
 			);
 			path = Views;
@@ -216,6 +219,14 @@
 				36C0AD562F65AE6000AB835C /* GameViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		36C0ADD12F65B80000AB835C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				36C0ADCF2F65B80000AB835C /* MainMenuView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		36C0AD932F65B40000AB835C /* Components */ = {
@@ -417,6 +428,7 @@
 				36C0AD922F65B40000AB835C /* GameStore.swift in Sources */,
 				36C0ADA02F65B50000AB835C /* UserPreferences.swift in Sources */,
 				36C0ADB02F65B60000AB835C /* TutorialOverlay.swift in Sources */,
+				36C0ADD02F65B80000AB835C /* MainMenuView.swift in Sources */,
 				36C0AD572F65AE6000AB835C /* GameBoardView.swift in Sources */,
 				36C0AD582F65AE6000AB835C /* GameScreenView.swift in Sources */,
 				36C0AD592F65AE6000AB835C /* TileView.swift in Sources */,
