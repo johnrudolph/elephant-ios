@@ -27,6 +27,8 @@
 		36C0AD2A2F65B00100AB835C /* MoveRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD1A2F65B00100AB835C /* MoveRecord.swift */; };
 		36C0AD402F65B10000AB835C /* BotAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD3F2F65B10000AB835C /* BotAI.swift */; };
 		36C0AD702F65B20000AB835C /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD6F2F65B20000AB835C /* AudioManager.swift */; };
+		36C0AD902F65B40000AB835C /* VictoryShapeIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD8F2F65B40000AB835C /* VictoryShapeIcon.swift */; };
+		36C0AD922F65B40000AB835C /* GameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD912F65B40000AB835C /* GameStore.swift */; };
 		36C0AD572F65AE6000AB835C /* GameBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD502F65AE6000AB835C /* GameBoardView.swift */; };
 		36C0AD582F65AE6000AB835C /* GameScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD512F65AE6000AB835C /* GameScreenView.swift */; };
 		36C0AD592F65AE6000AB835C /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD522F65AE6000AB835C /* TileView.swift */; };
@@ -79,6 +81,8 @@
 		36C0AD1A2F65B00100AB835C /* MoveRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveRecord.swift; sourceTree = "<group>"; };
 		36C0AD3F2F65B10000AB835C /* BotAI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotAI.swift; sourceTree = "<group>"; };
 		36C0AD6F2F65B20000AB835C /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		36C0AD8F2F65B40000AB835C /* VictoryShapeIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryShapeIcon.swift; sourceTree = "<group>"; };
+		36C0AD912F65B40000AB835C /* GameStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
 		36C0AD502F65AE6000AB835C /* GameBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoardView.swift; sourceTree = "<group>"; };
 		36C0AD512F65AE6000AB835C /* GameScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenView.swift; sourceTree = "<group>"; };
 		36C0AD522F65AE6000AB835C /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 				36C0AD5E2F65AE6000AB835C /* Views */,
 				36C0AD602F65AE6000AB835C /* ViewModels */,
 				36C0AD712F65B20000AB835C /* Audio */,
+				36C0AD942F65B40000AB835C /* Persistence */,
 				36C0ACE22F65AE6000AB835C /* elephant_iosApp.swift */,
 				36C0ACE42F65AE6000AB835C /* ContentView.swift */,
 				36C0ACE62F65AE6200AB835C /* Assets.xcassets */,
@@ -181,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				36C0AD5F2F65AE6000AB835C /* Game */,
+				36C0AD932F65B40000AB835C /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -205,6 +211,22 @@
 				36C0AD562F65AE6000AB835C /* GameViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		36C0AD932F65B40000AB835C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				36C0AD8F2F65B40000AB835C /* VictoryShapeIcon.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		36C0AD942F65B40000AB835C /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				36C0AD912F65B40000AB835C /* GameStore.swift */,
+			);
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 		36C0AD712F65B20000AB835C /* Audio */ = {
@@ -385,6 +407,8 @@
 				36C0AD2A2F65B00100AB835C /* MoveRecord.swift in Sources */,
 				36C0AD402F65B10000AB835C /* BotAI.swift in Sources */,
 				36C0AD702F65B20000AB835C /* AudioManager.swift in Sources */,
+				36C0AD902F65B40000AB835C /* VictoryShapeIcon.swift in Sources */,
+				36C0AD922F65B40000AB835C /* GameStore.swift in Sources */,
 				36C0AD572F65AE6000AB835C /* GameBoardView.swift in Sources */,
 				36C0AD582F65AE6000AB835C /* GameScreenView.swift in Sources */,
 				36C0AD592F65AE6000AB835C /* TileView.swift in Sources */,
