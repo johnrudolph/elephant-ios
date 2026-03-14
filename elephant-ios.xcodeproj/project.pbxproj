@@ -14,6 +14,17 @@
 		36C0ACF52F65AE6300AB835C /* elephant_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0ACF42F65AE6300AB835C /* elephant_iosTests.swift */; };
 		36C0ACFF2F65AE6300AB835C /* elephant_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0ACFE2F65AE6300AB835C /* elephant_iosUITests.swift */; };
 		36C0AD012F65AE6300AB835C /* elephant_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD002F65AE6300AB835C /* elephant_iosUITestsLaunchTests.swift */; };
+		36C0AD202F65B00100AB835C /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD102F65B00100AB835C /* Board.swift */; };
+		36C0AD212F65B00100AB835C /* Slide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD112F65B00100AB835C /* Slide.swift */; };
+		36C0AD222F65B00100AB835C /* ElephantLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD122F65B00100AB835C /* ElephantLogic.swift */; };
+		36C0AD232F65B00100AB835C /* SlideExecution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD132F65B00100AB835C /* SlideExecution.swift */; };
+		36C0AD242F65B00100AB835C /* VictoryShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD142F65B00100AB835C /* VictoryShape.swift */; };
+		36C0AD252F65B00100AB835C /* VictoryDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD152F65B00100AB835C /* VictoryDetection.swift */; };
+		36C0AD262F65B00100AB835C /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD162F65B00100AB835C /* GameEngine.swift */; };
+		36C0AD272F65B00100AB835C /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD172F65B00100AB835C /* Rating.swift */; };
+		36C0AD282F65B00100AB835C /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD182F65B00100AB835C /* GameState.swift */; };
+		36C0AD292F65B00100AB835C /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD192F65B00100AB835C /* PlayerState.swift */; };
+		36C0AD2A2F65B00100AB835C /* MoveRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD1A2F65B00100AB835C /* MoveRecord.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +56,17 @@
 		36C0ACFA2F65AE6300AB835C /* elephant-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "elephant-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36C0ACFE2F65AE6300AB835C /* elephant_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = elephant_iosUITests.swift; sourceTree = "<group>"; };
 		36C0AD002F65AE6300AB835C /* elephant_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = elephant_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		36C0AD102F65B00100AB835C /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		36C0AD112F65B00100AB835C /* Slide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slide.swift; sourceTree = "<group>"; };
+		36C0AD122F65B00100AB835C /* ElephantLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElephantLogic.swift; sourceTree = "<group>"; };
+		36C0AD132F65B00100AB835C /* SlideExecution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideExecution.swift; sourceTree = "<group>"; };
+		36C0AD142F65B00100AB835C /* VictoryShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryShape.swift; sourceTree = "<group>"; };
+		36C0AD152F65B00100AB835C /* VictoryDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryDetection.swift; sourceTree = "<group>"; };
+		36C0AD162F65B00100AB835C /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
+		36C0AD172F65B00100AB835C /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
+		36C0AD182F65B00100AB835C /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		36C0AD192F65B00100AB835C /* PlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerState.swift; sourceTree = "<group>"; };
+		36C0AD1A2F65B00100AB835C /* MoveRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveRecord.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +117,8 @@
 		36C0ACE12F65AE6000AB835C /* elephant-ios */ = {
 			isa = PBXGroup;
 			children = (
+				36C0AD302F65B00100AB835C /* Engine */,
+				36C0AD312F65B00100AB835C /* Models */,
 				36C0ACE22F65AE6000AB835C /* elephant_iosApp.swift */,
 				36C0ACE42F65AE6000AB835C /* ContentView.swift */,
 				36C0ACE62F65AE6200AB835C /* Assets.xcassets */,
@@ -102,6 +126,31 @@
 				36C0ACE92F65AE6200AB835C /* Preview Content */,
 			);
 			path = "elephant-ios";
+			sourceTree = "<group>";
+		};
+		36C0AD302F65B00100AB835C /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				36C0AD102F65B00100AB835C /* Board.swift */,
+				36C0AD112F65B00100AB835C /* Slide.swift */,
+				36C0AD122F65B00100AB835C /* ElephantLogic.swift */,
+				36C0AD132F65B00100AB835C /* SlideExecution.swift */,
+				36C0AD142F65B00100AB835C /* VictoryShape.swift */,
+				36C0AD152F65B00100AB835C /* VictoryDetection.swift */,
+				36C0AD162F65B00100AB835C /* GameEngine.swift */,
+				36C0AD172F65B00100AB835C /* Rating.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		36C0AD312F65B00100AB835C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				36C0AD182F65B00100AB835C /* GameState.swift */,
+				36C0AD192F65B00100AB835C /* PlayerState.swift */,
+				36C0AD1A2F65B00100AB835C /* MoveRecord.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		36C0ACE92F65AE6200AB835C /* Preview Content */ = {
@@ -261,6 +310,17 @@
 			files = (
 				36C0ACE52F65AE6000AB835C /* ContentView.swift in Sources */,
 				36C0ACE32F65AE6000AB835C /* elephant_iosApp.swift in Sources */,
+				36C0AD202F65B00100AB835C /* Board.swift in Sources */,
+				36C0AD212F65B00100AB835C /* Slide.swift in Sources */,
+				36C0AD222F65B00100AB835C /* ElephantLogic.swift in Sources */,
+				36C0AD232F65B00100AB835C /* SlideExecution.swift in Sources */,
+				36C0AD242F65B00100AB835C /* VictoryShape.swift in Sources */,
+				36C0AD252F65B00100AB835C /* VictoryDetection.swift in Sources */,
+				36C0AD262F65B00100AB835C /* GameEngine.swift in Sources */,
+				36C0AD272F65B00100AB835C /* Rating.swift in Sources */,
+				36C0AD282F65B00100AB835C /* GameState.swift in Sources */,
+				36C0AD292F65B00100AB835C /* PlayerState.swift in Sources */,
+				36C0AD2A2F65B00100AB835C /* MoveRecord.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
