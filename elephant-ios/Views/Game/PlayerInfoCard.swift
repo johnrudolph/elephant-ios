@@ -19,6 +19,14 @@ struct PlayerInfoCard: View {
                 .font(.headline)
                 .lineLimit(1)
 
+            // Victory shape
+            VictoryShapeIcon(
+                shape: victoryShape,
+                color: isPlayer1 ? Color("PlayerOrange") : Color("PlayerTeal"),
+                size: 24
+            )
+            .opacity(0.6)
+
             Spacer()
 
             // Hand count
