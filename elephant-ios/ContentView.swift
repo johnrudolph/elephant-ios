@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  Elephant in the Room
-//
-//  Created by John Drexler on 3/14/26.
-//
-
 import SwiftUI
 
 struct ContentView: View {
