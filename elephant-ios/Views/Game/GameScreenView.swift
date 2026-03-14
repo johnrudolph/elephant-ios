@@ -2,13 +2,26 @@ import SwiftUI
 
 struct GameScreenView: View {
     @Bindable var viewModel: GameViewModel
+    var onReturnToMenu: () -> Void
 
     var body: some View {
         ZStack {
             VStack(spacing: 16) {
-                // Top bar: mute toggle
+                // Top bar: back button + mute
                 HStack {
+                    Button {
+                        viewModel.stopTimer()
+                        onReturnToMenu()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .font(.title3)
+                            .foregroundStyle(.secondary)
+                    }
+                    .buttonStyle(.plain)
+                    .padding(.leading)
+
                     Spacer()
+
                     Button {
                         AudioManager.shared.isMuted.toggle()
                     } label: {
@@ -43,7 +56,7 @@ struct GameScreenView: View {
                 // Game board
                 GameBoardView(viewModel: viewModel)
 
-                // Turn timer
+                // Turn timer (only if enabled and not a bot game)
                 if viewModel.showTimer {
                     TurnTimerView(
                         progress: viewModel.timerProgress,
@@ -55,7 +68,7 @@ struct GameScreenView: View {
 
                 Spacer()
 
-                // Player info — highlight during tutorial victory shape step
+                // Player info
                 PlayerInfoCard(
                     player: viewModel.player1,
                     isCurrentTurn: viewModel.currentPlayerId == viewModel.player1.id,
@@ -73,7 +86,7 @@ struct GameScreenView: View {
                     }
                 }
 
-                // Post-game overlay
+                // Post-game actions
                 if viewModel.isComplete {
                     VStack(spacing: 12) {
                         Text(viewModel.victorIds.contains(viewModel.player1.id) ? "Victory!" : viewModel.victorIds.isEmpty ? "Draw" : "Defeat")
@@ -84,8 +97,8 @@ struct GameScreenView: View {
                                     : .secondary
                             )
 
-                        Button(action: { viewModel.startNewBotGame() }) {
-                            Text("Play Again")
+                        Button(action: onReturnToMenu) {
+                            Text("Continue")
                                 .font(.headline)
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 12)
@@ -93,12 +106,11 @@ struct GameScreenView: View {
                         .buttonStyle(.borderedProminent)
                     }
                     .padding(.horizontal)
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
                 }
             }
             .padding(.vertical)
 
-            // Tutorial overlay (banner + buttons)
+            // Tutorial overlay
             TutorialOverlay(viewModel: viewModel)
         }
         .onAppear {
@@ -114,5 +126,8 @@ struct GameScreenView: View {
 }
 
 #Preview("Game Screen") {
-    GameScreenView(viewModel: GameViewModel(game: GameEngine.newBotGame(playerId: "player1", playerName: "You")))
+    GameScreenView(
+        viewModel: GameViewModel(game: GameEngine.newBotGame(playerId: "player1", playerName: "You")),
+        onReturnToMenu: {}
+    )
 }

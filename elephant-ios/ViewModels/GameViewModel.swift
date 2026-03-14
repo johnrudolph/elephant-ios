@@ -68,8 +68,16 @@ final class GameViewModel {
         turnTimeRemaining <= Self.urgentThreshold
     }
 
+    var isBotGame: Bool {
+        game.player1.isBot || game.player2.isBot
+    }
+
+    var timerAllowed: Bool {
+        !isTutorialMode && !isBotGame && UserPreferences.turnTimerEnabled
+    }
+
     var showTimer: Bool {
-        isPlayerTurn && !isComplete && !isTutorialMode
+        timerAllowed && isPlayerTurn && !isComplete
     }
 
     var statusText: String {
@@ -164,7 +172,7 @@ final class GameViewModel {
     // MARK: - Timer
 
     func startTimer() {
-        guard !isTutorialMode else { return }
+        guard timerAllowed else { return }
         stopTimer()
         turnTimeRemaining = Self.turnDuration
         timerTask = Task { @MainActor in
