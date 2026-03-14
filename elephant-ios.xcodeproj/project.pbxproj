@@ -33,6 +33,7 @@
 		36C0AD5A2F65AE6000AB835C /* ElephantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD532F65AE6000AB835C /* ElephantView.swift */; };
 		36C0AD5B2F65AE6000AB835C /* ElephantMoveOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD542F65AE6000AB835C /* ElephantMoveOverlay.swift */; };
 		36C0AD5C2F65AE6000AB835C /* PlayerInfoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD552F65AE6000AB835C /* PlayerInfoCard.swift */; };
+		36C0AD802F65B30000AB835C /* TurnTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD7F2F65B30000AB835C /* TurnTimerView.swift */; };
 		36C0AD5D2F65AE6000AB835C /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD562F65AE6000AB835C /* GameViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,7 @@
 		36C0AD532F65AE6000AB835C /* ElephantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElephantView.swift; sourceTree = "<group>"; };
 		36C0AD542F65AE6000AB835C /* ElephantMoveOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElephantMoveOverlay.swift; sourceTree = "<group>"; };
 		36C0AD552F65AE6000AB835C /* PlayerInfoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoCard.swift; sourceTree = "<group>"; };
+		36C0AD7F2F65B30000AB835C /* TurnTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnTimerView.swift; sourceTree = "<group>"; };
 		36C0AD562F65AE6000AB835C /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -192,6 +194,7 @@
 				36C0AD532F65AE6000AB835C /* ElephantView.swift */,
 				36C0AD542F65AE6000AB835C /* ElephantMoveOverlay.swift */,
 				36C0AD552F65AE6000AB835C /* PlayerInfoCard.swift */,
+				36C0AD7F2F65B30000AB835C /* TurnTimerView.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				36C0AD5A2F65AE6000AB835C /* ElephantView.swift in Sources */,
 				36C0AD5B2F65AE6000AB835C /* ElephantMoveOverlay.swift in Sources */,
 				36C0AD5C2F65AE6000AB835C /* PlayerInfoCard.swift in Sources */,
+				36C0AD802F65B30000AB835C /* TurnTimerView.swift in Sources */,
 				36C0AD5D2F65AE6000AB835C /* GameViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

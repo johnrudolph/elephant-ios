@@ -6,6 +6,12 @@ final class GameViewModel {
     private(set) var isAnimating = false
     private let audio = AudioManager.shared
 
+    // Turn timer
+    static let turnDuration: TimeInterval = 35
+    static let urgentThreshold: TimeInterval = 10
+    private(set) var turnTimeRemaining: TimeInterval = turnDuration
+    private var timerTask: Task<Void, Never>?
+
     var board: Board { game.board }
     var elephantSpace: Int { game.board.elephantSpace }
     var phase: GamePhase { game.phase }
@@ -35,6 +41,18 @@ final class GameViewModel {
         return ElephantLogic.validMoves(from: elephantSpace)
     }
 
+    var timerProgress: Double {
+        turnTimeRemaining / Self.turnDuration
+    }
+
+    var isTimerUrgent: Bool {
+        turnTimeRemaining <= Self.urgentThreshold
+    }
+
+    var showTimer: Bool {
+        isPlayerTurn && !isComplete
+    }
+
     var statusText: String {
         if isComplete {
             if victorIds.isEmpty { return "Draw!" }
@@ -55,10 +73,50 @@ final class GameViewModel {
         self.game = game
     }
 
+    // MARK: - Timer
+
+    func startTimer() {
+        stopTimer()
+        turnTimeRemaining = Self.turnDuration
+        timerTask = Task { @MainActor in
+            while !Task.isCancelled && turnTimeRemaining > 0 {
+                try? await Task.sleep(for: .milliseconds(100))
+                guard !Task.isCancelled else { return }
+                turnTimeRemaining -= 0.1
+                if turnTimeRemaining <= 0 {
+                    handleTimerExpired()
+                    return
+                }
+            }
+        }
+    }
+
+    func stopTimer() {
+        timerTask?.cancel()
+        timerTask = nil
+    }
+
+    private func resetTimer() {
+        stopTimer()
+        if isPlayerTurn {
+            startTimer()
+        }
+    }
+
+    private func handleTimerExpired() {
+        guard !isComplete else { return }
+        // Forfeit — opponent wins
+        game.status = .complete
+        game.victorIds = [game.opponent.id]
+        stopTimer()
+        playEndGameSound()
+    }
+
     // MARK: - Actions
 
     func placeTile(slide: Slide) {
         guard isPlayerTurn, isTilePhase else { return }
+        stopTimer()
         isAnimating = true
         game = GameEngine.placeTile(slide: slide, game: game)
         audio.playSlide()
@@ -76,6 +134,7 @@ final class GameViewModel {
     func moveElephant(to space: Int) {
         guard isPlayerTurn, isElephantPhase else { return }
         let previousSpace = elephantSpace
+        stopTimer()
         isAnimating = true
         game = GameEngine.moveElephant(to: space, game: game)
         if space != previousSpace { audio.playElephant() }
@@ -86,16 +145,18 @@ final class GameViewModel {
 
             if !isComplete && game.currentPlayer.isBot {
                 executeBotTurn()
+            } else if isPlayerTurn {
+                startTimer()
             }
         }
     }
 
     func executeBotTurn() {
         guard game.currentPlayer.isBot, !isComplete else { return }
+        stopTimer()
         isAnimating = true
 
         Task { @MainActor in
-            // Artificial thinking delay
             try? await Task.sleep(for: .milliseconds(Int.random(in: 500...1000)))
 
             guard let move = BotAI.selectMove(game: game) else {
@@ -103,7 +164,6 @@ final class GameViewModel {
                 return
             }
 
-            // Place tile
             game = GameEngine.placeTile(slide: move.slide, game: game)
             audio.playSlide()
             try? await Task.sleep(for: .milliseconds(700))
@@ -114,7 +174,6 @@ final class GameViewModel {
                 return
             }
 
-            // Move elephant
             let prevElephant = game.board.elephantSpace
             game = GameEngine.moveElephant(to: move.elephantMove, game: game)
             if move.elephantMove != prevElephant { audio.playElephant() }
@@ -122,20 +181,26 @@ final class GameViewModel {
 
             isAnimating = false
 
-            // If bot still has the turn (opponent has no tiles), keep going
             if !isComplete && game.currentPlayer.isBot {
                 executeBotTurn()
+            } else if isPlayerTurn {
+                startTimer()
             }
         }
     }
 
     func startNewBotGame() {
+        stopTimer()
         let playerId = game.player1.id
         let playerName = game.player1.name
         game = GameEngine.newBotGame(playerId: playerId, playerName: playerName)
+        if isPlayerTurn {
+            startTimer()
+        }
     }
 
     private func playEndGameSound() {
+        stopTimer()
         if victorIds.contains(game.player1.id) {
             audio.playVictory()
         } else if !victorIds.isEmpty {
