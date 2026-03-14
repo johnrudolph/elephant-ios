@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		36C0ACE32F65AE6000AB835C /* Elephant_in_the_RoomApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0ACE22F65AE6000AB835C /* Elephant_in_the_RoomApp.swift */; };
+		36C0ACE32F65AE6000AB835C /* elephant_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0ACE22F65AE6000AB835C /* elephant_iosApp.swift */; };
 		36C0ACE52F65AE6000AB835C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0ACE42F65AE6000AB835C /* ContentView.swift */; };
 		36C0ACE72F65AE6200AB835C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36C0ACE62F65AE6200AB835C /* Assets.xcassets */; };
 		36C0ACEB2F65AE6200AB835C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36C0ACEA2F65AE6200AB835C /* Preview Assets.xcassets */; };
-		36C0ACF52F65AE6300AB835C /* Elephant_in_the_RoomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0ACF42F65AE6300AB835C /* Elephant_in_the_RoomTests.swift */; };
-		36C0ACFF2F65AE6300AB835C /* Elephant_in_the_RoomUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0ACFE2F65AE6300AB835C /* Elephant_in_the_RoomUITests.swift */; };
-		36C0AD012F65AE6300AB835C /* Elephant_in_the_RoomUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD002F65AE6300AB835C /* Elephant_in_the_RoomUITestsLaunchTests.swift */; };
+		36C0ACF52F65AE6300AB835C /* elephant_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0ACF42F65AE6300AB835C /* elephant_iosTests.swift */; };
+		36C0ACFF2F65AE6300AB835C /* elephant_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0ACFE2F65AE6300AB835C /* elephant_iosUITests.swift */; };
+		36C0AD012F65AE6300AB835C /* elephant_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD002F65AE6300AB835C /* elephant_iosUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,29 +22,29 @@
 			containerPortal = 36C0ACD72F65AE6000AB835C /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 36C0ACDE2F65AE6000AB835C;
-			remoteInfo = "Elephant in the Room";
+			remoteInfo = "elephant-ios";
 		};
 		36C0ACFB2F65AE6300AB835C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36C0ACD72F65AE6000AB835C /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 36C0ACDE2F65AE6000AB835C;
-			remoteInfo = "Elephant in the Room";
+			remoteInfo = "elephant-ios";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		36C0ACDF2F65AE6000AB835C /* Elephant in the Room.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Elephant in the Room.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		36C0ACE22F65AE6000AB835C /* Elephant_in_the_RoomApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elephant_in_the_RoomApp.swift; sourceTree = "<group>"; };
+		36C0ACDF2F65AE6000AB835C /* elephant-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "elephant-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		36C0ACE22F65AE6000AB835C /* elephant_iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = elephant_iosApp.swift; sourceTree = "<group>"; };
 		36C0ACE42F65AE6000AB835C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		36C0ACE62F65AE6200AB835C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		36C0ACE82F65AE6200AB835C /* Elephant_in_the_Room.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Elephant_in_the_Room.entitlements; sourceTree = "<group>"; };
+		36C0ACE82F65AE6200AB835C /* elephant_ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = elephant_ios.entitlements; sourceTree = "<group>"; };
 		36C0ACEA2F65AE6200AB835C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		36C0ACF02F65AE6300AB835C /* Elephant in the RoomTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Elephant in the RoomTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		36C0ACF42F65AE6300AB835C /* Elephant_in_the_RoomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elephant_in_the_RoomTests.swift; sourceTree = "<group>"; };
-		36C0ACFA2F65AE6300AB835C /* Elephant in the RoomUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Elephant in the RoomUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		36C0ACFE2F65AE6300AB835C /* Elephant_in_the_RoomUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elephant_in_the_RoomUITests.swift; sourceTree = "<group>"; };
-		36C0AD002F65AE6300AB835C /* Elephant_in_the_RoomUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elephant_in_the_RoomUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		36C0ACF02F65AE6300AB835C /* elephant-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "elephant-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		36C0ACF42F65AE6300AB835C /* elephant_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = elephant_iosTests.swift; sourceTree = "<group>"; };
+		36C0ACFA2F65AE6300AB835C /* elephant-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "elephant-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		36C0ACFE2F65AE6300AB835C /* elephant_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = elephant_iosUITests.swift; sourceTree = "<group>"; };
+		36C0AD002F65AE6300AB835C /* elephant_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = elephant_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,9 +75,9 @@
 		36C0ACD62F65AE6000AB835C = {
 			isa = PBXGroup;
 			children = (
-				36C0ACE12F65AE6000AB835C /* Elephant in the Room */,
-				36C0ACF32F65AE6300AB835C /* Elephant in the RoomTests */,
-				36C0ACFD2F65AE6300AB835C /* Elephant in the RoomUITests */,
+				36C0ACE12F65AE6000AB835C /* elephant-ios */,
+				36C0ACF32F65AE6300AB835C /* elephant-iosTests */,
+				36C0ACFD2F65AE6300AB835C /* elephant-iosUITests */,
 				36C0ACE02F65AE6000AB835C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,23 +85,23 @@
 		36C0ACE02F65AE6000AB835C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				36C0ACDF2F65AE6000AB835C /* Elephant in the Room.app */,
-				36C0ACF02F65AE6300AB835C /* Elephant in the RoomTests.xctest */,
-				36C0ACFA2F65AE6300AB835C /* Elephant in the RoomUITests.xctest */,
+				36C0ACDF2F65AE6000AB835C /* elephant-ios.app */,
+				36C0ACF02F65AE6300AB835C /* elephant-iosTests.xctest */,
+				36C0ACFA2F65AE6300AB835C /* elephant-iosUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		36C0ACE12F65AE6000AB835C /* Elephant in the Room */ = {
+		36C0ACE12F65AE6000AB835C /* elephant-ios */ = {
 			isa = PBXGroup;
 			children = (
-				36C0ACE22F65AE6000AB835C /* Elephant_in_the_RoomApp.swift */,
+				36C0ACE22F65AE6000AB835C /* elephant_iosApp.swift */,
 				36C0ACE42F65AE6000AB835C /* ContentView.swift */,
 				36C0ACE62F65AE6200AB835C /* Assets.xcassets */,
-				36C0ACE82F65AE6200AB835C /* Elephant_in_the_Room.entitlements */,
+				36C0ACE82F65AE6200AB835C /* elephant_ios.entitlements */,
 				36C0ACE92F65AE6200AB835C /* Preview Content */,
 			);
-			path = "Elephant in the Room";
+			path = "elephant-ios";
 			sourceTree = "<group>";
 		};
 		36C0ACE92F65AE6200AB835C /* Preview Content */ = {
@@ -112,29 +112,29 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		36C0ACF32F65AE6300AB835C /* Elephant in the RoomTests */ = {
+		36C0ACF32F65AE6300AB835C /* elephant-iosTests */ = {
 			isa = PBXGroup;
 			children = (
-				36C0ACF42F65AE6300AB835C /* Elephant_in_the_RoomTests.swift */,
+				36C0ACF42F65AE6300AB835C /* elephant_iosTests.swift */,
 			);
-			path = "Elephant in the RoomTests";
+			path = "elephant-iosTests";
 			sourceTree = "<group>";
 		};
-		36C0ACFD2F65AE6300AB835C /* Elephant in the RoomUITests */ = {
+		36C0ACFD2F65AE6300AB835C /* elephant-iosUITests */ = {
 			isa = PBXGroup;
 			children = (
-				36C0ACFE2F65AE6300AB835C /* Elephant_in_the_RoomUITests.swift */,
-				36C0AD002F65AE6300AB835C /* Elephant_in_the_RoomUITestsLaunchTests.swift */,
+				36C0ACFE2F65AE6300AB835C /* elephant_iosUITests.swift */,
+				36C0AD002F65AE6300AB835C /* elephant_iosUITestsLaunchTests.swift */,
 			);
-			path = "Elephant in the RoomUITests";
+			path = "elephant-iosUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		36C0ACDE2F65AE6000AB835C /* Elephant in the Room */ = {
+		36C0ACDE2F65AE6000AB835C /* elephant-ios */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 36C0AD042F65AE6300AB835C /* Build configuration list for PBXNativeTarget "Elephant in the Room" */;
+			buildConfigurationList = 36C0AD042F65AE6300AB835C /* Build configuration list for PBXNativeTarget "elephant-ios" */;
 			buildPhases = (
 				36C0ACDB2F65AE6000AB835C /* Sources */,
 				36C0ACDC2F65AE6000AB835C /* Frameworks */,
@@ -144,14 +144,14 @@
 			);
 			dependencies = (
 			);
-			name = "Elephant in the Room";
-			productName = "Elephant in the Room";
-			productReference = 36C0ACDF2F65AE6000AB835C /* Elephant in the Room.app */;
+			name = "elephant-ios";
+			productName = "elephant-ios";
+			productReference = 36C0ACDF2F65AE6000AB835C /* elephant-ios.app */;
 			productType = "com.apple.product-type.application";
 		};
-		36C0ACEF2F65AE6300AB835C /* Elephant in the RoomTests */ = {
+		36C0ACEF2F65AE6300AB835C /* elephant-iosTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 36C0AD072F65AE6300AB835C /* Build configuration list for PBXNativeTarget "Elephant in the RoomTests" */;
+			buildConfigurationList = 36C0AD072F65AE6300AB835C /* Build configuration list for PBXNativeTarget "elephant-iosTests" */;
 			buildPhases = (
 				36C0ACEC2F65AE6300AB835C /* Sources */,
 				36C0ACED2F65AE6300AB835C /* Frameworks */,
@@ -162,14 +162,14 @@
 			dependencies = (
 				36C0ACF22F65AE6300AB835C /* PBXTargetDependency */,
 			);
-			name = "Elephant in the RoomTests";
-			productName = "Elephant in the RoomTests";
-			productReference = 36C0ACF02F65AE6300AB835C /* Elephant in the RoomTests.xctest */;
+			name = "elephant-iosTests";
+			productName = "elephant-iosTests";
+			productReference = 36C0ACF02F65AE6300AB835C /* elephant-iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		36C0ACF92F65AE6300AB835C /* Elephant in the RoomUITests */ = {
+		36C0ACF92F65AE6300AB835C /* elephant-iosUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 36C0AD0A2F65AE6300AB835C /* Build configuration list for PBXNativeTarget "Elephant in the RoomUITests" */;
+			buildConfigurationList = 36C0AD0A2F65AE6300AB835C /* Build configuration list for PBXNativeTarget "elephant-iosUITests" */;
 			buildPhases = (
 				36C0ACF62F65AE6300AB835C /* Sources */,
 				36C0ACF72F65AE6300AB835C /* Frameworks */,
@@ -180,9 +180,9 @@
 			dependencies = (
 				36C0ACFC2F65AE6300AB835C /* PBXTargetDependency */,
 			);
-			name = "Elephant in the RoomUITests";
-			productName = "Elephant in the RoomUITests";
-			productReference = 36C0ACFA2F65AE6300AB835C /* Elephant in the RoomUITests.xctest */;
+			name = "elephant-iosUITests";
+			productName = "elephant-iosUITests";
+			productReference = 36C0ACFA2F65AE6300AB835C /* elephant-iosUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -208,7 +208,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 36C0ACDA2F65AE6000AB835C /* Build configuration list for PBXProject "Elephant in the Room" */;
+			buildConfigurationList = 36C0ACDA2F65AE6000AB835C /* Build configuration list for PBXProject "elephant-ios" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -221,9 +221,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				36C0ACDE2F65AE6000AB835C /* Elephant in the Room */,
-				36C0ACEF2F65AE6300AB835C /* Elephant in the RoomTests */,
-				36C0ACF92F65AE6300AB835C /* Elephant in the RoomUITests */,
+				36C0ACDE2F65AE6000AB835C /* elephant-ios */,
+				36C0ACEF2F65AE6300AB835C /* elephant-iosTests */,
+				36C0ACF92F65AE6300AB835C /* elephant-iosUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -260,7 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36C0ACE52F65AE6000AB835C /* ContentView.swift in Sources */,
-				36C0ACE32F65AE6000AB835C /* Elephant_in_the_RoomApp.swift in Sources */,
+				36C0ACE32F65AE6000AB835C /* elephant_iosApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36C0ACF52F65AE6300AB835C /* Elephant_in_the_RoomTests.swift in Sources */,
+				36C0ACF52F65AE6300AB835C /* elephant_iosTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,8 +276,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36C0ACFF2F65AE6300AB835C /* Elephant_in_the_RoomUITests.swift in Sources */,
-				36C0AD012F65AE6300AB835C /* Elephant_in_the_RoomUITestsLaunchTests.swift in Sources */,
+				36C0ACFF2F65AE6300AB835C /* elephant_iosUITests.swift in Sources */,
+				36C0AD012F65AE6300AB835C /* elephant_iosUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,12 +286,12 @@
 /* Begin PBXTargetDependency section */
 		36C0ACF22F65AE6300AB835C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 36C0ACDE2F65AE6000AB835C /* Elephant in the Room */;
+			target = 36C0ACDE2F65AE6000AB835C /* elephant-ios */;
 			targetProxy = 36C0ACF12F65AE6300AB835C /* PBXContainerItemProxy */;
 		};
 		36C0ACFC2F65AE6300AB835C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 36C0ACDE2F65AE6000AB835C /* Elephant in the Room */;
+			target = 36C0ACDE2F65AE6000AB835C /* elephant-ios */;
 			targetProxy = 36C0ACFB2F65AE6300AB835C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -416,10 +416,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Elephant in the Room/Elephant_in_the_Room.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "elephant-ios/elephant_ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Elephant in the Room/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"elephant-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = 9SX5D95DYR;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -454,10 +454,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Elephant in the Room/Elephant_in_the_Room.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "elephant-ios/elephant_ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Elephant in the Room/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"elephant-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = 9SX5D95DYR;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -506,7 +506,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elephant in the Room.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Elephant in the Room";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/elephant-ios.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/elephant-ios";
 			};
 			name = Debug;
 		};
@@ -529,7 +529,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elephant in the Room.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Elephant in the Room";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/elephant-ios.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/elephant-ios";
 			};
 			name = Release;
 		};
@@ -551,7 +551,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Elephant in the Room";
+				TEST_TARGET_NAME = "elephant-ios";
 			};
 			name = Debug;
 		};
@@ -573,14 +573,14 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Elephant in the Room";
+				TEST_TARGET_NAME = "elephant-ios";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		36C0ACDA2F65AE6000AB835C /* Build configuration list for PBXProject "Elephant in the Room" */ = {
+		36C0ACDA2F65AE6000AB835C /* Build configuration list for PBXProject "elephant-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				36C0AD022F65AE6300AB835C /* Debug */,
@@ -589,7 +589,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		36C0AD042F65AE6300AB835C /* Build configuration list for PBXNativeTarget "Elephant in the Room" */ = {
+		36C0AD042F65AE6300AB835C /* Build configuration list for PBXNativeTarget "elephant-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				36C0AD052F65AE6300AB835C /* Debug */,
@@ -598,7 +598,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		36C0AD072F65AE6300AB835C /* Build configuration list for PBXNativeTarget "Elephant in the RoomTests" */ = {
+		36C0AD072F65AE6300AB835C /* Build configuration list for PBXNativeTarget "elephant-iosTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				36C0AD082F65AE6300AB835C /* Debug */,
@@ -607,7 +607,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		36C0AD0A2F65AE6300AB835C /* Build configuration list for PBXNativeTarget "Elephant in the RoomUITests" */ = {
+		36C0AD0A2F65AE6300AB835C /* Build configuration list for PBXNativeTarget "elephant-iosUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				36C0AD0B2F65AE6300AB835C /* Debug */,
