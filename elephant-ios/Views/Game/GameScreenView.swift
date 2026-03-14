@@ -97,7 +97,6 @@ struct GameScreenView: View {
     }
 }
 
-#Preview {
-    let game = GameEngine.newBotGame(playerId: "player1", playerName: "You")
-    GameScreenView(viewModel: GameViewModel(game: game))
+#Preview("Game Screen") {
+    GameScreenView(viewModel: GameViewModel(game: GameEngine.newBotGame(playerId: "player1", playerName: "You")))
 }

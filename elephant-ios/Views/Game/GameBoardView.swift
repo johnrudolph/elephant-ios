@@ -121,7 +121,6 @@ struct GameBoardView: View {
     }
 }
 
-#Preview {
-    let game = GameEngine.newBotGame(playerId: "player1", playerName: "You")
-    GameBoardView(viewModel: GameViewModel(game: game))
+#Preview("Game Board") {
+    GameBoardView(viewModel: GameViewModel(game: GameEngine.newBotGame(playerId: "player1", playerName: "You")))
 }
