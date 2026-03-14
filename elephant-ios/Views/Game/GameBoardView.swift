@@ -16,7 +16,7 @@ struct GameBoardView: View {
             tilesLayer
 
             ElephantView(cellSize: cellSize)
-                .position(viewModel.pointForSpace(viewModel.elephantSpace, cellSize: cellSize, spacing: spacing))
+                .position(pointFor(viewModel.elephantSpace))
                 .animation(.easeInOut(duration: 0.7), value: viewModel.elephantSpace)
                 .allowsHitTesting(false)
 
@@ -60,20 +60,29 @@ struct GameBoardView: View {
     // MARK: - Tiles
 
     private var tilesLayer: some View {
-        ForEach(1...16, id: \.self) { space in
-            if let owner = viewModel.board.owner(of: space) {
-                TileView(
-                    playerId: owner,
-                    isPlayer1: owner == viewModel.player1.id,
-                    isWinning: viewModel.winningSpaces.contains(space),
-                    cellSize: cellSize
-                )
-                .position(viewModel.pointForSpace(space, cellSize: cellSize, spacing: spacing))
-                .animation(.easeInOut(duration: 0.7), value: viewModel.board.spaces[space] as? String)
-                .transition(.scale.combined(with: .opacity))
-                .allowsHitTesting(false)
+        let board = viewModel.board
+        return ZStack {
+            ForEach(1...16, id: \.self) { space in
+                if let owner = board.spaces[space] {
+                    TileView(
+                        playerId: owner,
+                        isPlayer1: owner == viewModel.player1.id,
+                        isWinning: viewModel.winningSpaces.contains(space),
+                        cellSize: cellSize
+                    )
+                    .position(pointFor(space))
+                    .allowsHitTesting(false)
+                }
             }
         }
+    }
+
+    private func pointFor(_ space: Int) -> CGPoint {
+        let col = CGFloat(Board.col(of: space))
+        let row = CGFloat(Board.row(of: space))
+        let x = col * (cellSize + spacing) + cellSize / 2
+        let y = row * (cellSize + spacing) + cellSize / 2
+        return CGPoint(x: x, y: y)
     }
 
     // MARK: - Slide Gesture
@@ -92,17 +101,11 @@ struct GameBoardView: View {
             direction = translation.height > 0 ? .down : .up
         }
 
-        // Start position relative to the board (accounting for padding)
         let relX = start.x - 44
         let relY = start.y - 44
         let col = min(3, max(0, Int(relX / (cellSize + spacing))))
         let row = min(3, max(0, Int(relY / (cellSize + spacing))))
 
-        // The entry space depends on the swipe direction:
-        // Swipe right → enter from the left edge of this row
-        // Swipe left → enter from the right edge of this row
-        // Swipe down → enter from the top of this column
-        // Swipe up → enter from the bottom of this column
         let slide: Slide
         switch direction {
         case .right:

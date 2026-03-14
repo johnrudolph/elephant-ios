@@ -1,14 +1,15 @@
 import Foundation
 
 struct Board: Equatable, Codable {
-    var spaces: [Int: String?] // keys 1...16, nil = empty, String = player ID
+    /// Maps space number (1-16) to player ID. Missing key = empty space.
+    var spaces: [Int: String]
     var elephantSpace: Int
 
     static let size = 4
     static let spaceCount = 16
 
     static let empty = Board(
-        spaces: (1...spaceCount).reduce(into: [:]) { $0[$1] = Optional<String>.none },
+        spaces: [:],
         elephantSpace: 6
     )
 
@@ -36,18 +37,18 @@ struct Board: Equatable, Codable {
     }
 
     func owner(of space: Int) -> String? {
-        spaces[space] ?? nil
+        spaces[space]
     }
 
     func isOccupied(_ space: Int) -> Bool {
-        owner(of: space) != nil
+        spaces[space] != nil
     }
 
     func isEmpty(_ space: Int) -> Bool {
-        owner(of: space) == nil
+        spaces[space] == nil
     }
 
     func spacesOwnedBy(_ playerId: String) -> [Int] {
-        (1...Board.spaceCount).filter { owner(of: $0) == playerId }
+        (1...Board.spaceCount).filter { spaces[$0] == playerId }
     }
 }

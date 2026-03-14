@@ -217,6 +217,19 @@ final class SlideExecutionTests: XCTestCase {
         XCTAssertNil(result.pushedOffTileOwner)
     }
 
+    func testSlideDoesNotMoveTilesWithGap() {
+        var board = Board.empty
+        // Tile at space 3, but spaces 1 and 2 are empty
+        board.spaces[3] = "p2"
+        let slide = Slide(entrySpace: 1, direction: .right) // path: [1, 2, 3, 4]
+        let result = SlideExecution.execute(slide: slide, playerId: "p1", board: board)
+        XCTAssertEqual(result.board.owner(of: 1), "p1") // new tile at entry
+        XCTAssertNil(result.board.owner(of: 2)) // still empty
+        XCTAssertEqual(result.board.owner(of: 3), "p2") // NOT moved — gap before it
+        XCTAssertNil(result.board.owner(of: 4)) // still empty
+        XCTAssertNil(result.pushedOffTileOwner)
+    }
+
     func testSlidePushesTileOffBoard() {
         var board = Board.empty
         board.spaces[1] = "p1"

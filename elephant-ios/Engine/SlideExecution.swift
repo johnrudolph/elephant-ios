@@ -2,15 +2,16 @@ import Foundation
 
 struct SlideResult {
     var board: Board
-    var pushedOffTileOwner: String? // player ID of tile pushed off, if any
+    var pushedOffTileOwner: String?
 }
 
 enum SlideExecution {
     /// Execute a slide on the board, placing a tile for the given player.
     ///
-    /// The new tile enters at the entry space and pushes existing tiles along the path.
-    /// If all 4 positions are occupied, the tile at the far end is pushed off and
-    /// returns to its owner's hand.
+    /// The new tile enters at the entry space. If the entry is occupied,
+    /// the occupant cascades to the next space, and so on — but only
+    /// through contiguous occupied spaces from the entry point.
+    /// A tile at the far end gets pushed off the board.
     static func execute(slide: Slide, playerId: String, board: Board) -> SlideResult {
         let path = slide.path
         guard path.count == 4 else {
@@ -20,14 +21,24 @@ enum SlideExecution {
         var newBoard = board
         var pushedOff: String? = nil
 
-        // Check if tile at position 4 (far end) gets pushed off
-        if path.allSatisfy({ board.isOccupied($0) }) {
-            pushedOff = board.owner(of: path[3])
+        // Find how many contiguous occupied spaces from the entry
+        var cascadeLength = 0
+        for i in 0..<path.count {
+            if board.isOccupied(path[i]) {
+                cascadeLength += 1
+            } else {
+                break
+            }
         }
 
-        // Cascade: shift tiles from back to front
-        // Work backwards through the path
-        for i in stride(from: path.count - 1, through: 1, by: -1) {
+        // If all 4 are occupied, the tile at position 3 is pushed off
+        if cascadeLength == 4 {
+            pushedOff = board.owner(of: path[3])
+            cascadeLength = 3 // only shift 3 tiles (the 4th falls off)
+        }
+
+        // Shift the contiguous tiles by one position (back to front)
+        for i in stride(from: cascadeLength, through: 1, by: -1) {
             newBoard.spaces[path[i]] = board.owner(of: path[i - 1])
         }
 
