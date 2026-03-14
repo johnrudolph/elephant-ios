@@ -6,6 +6,14 @@ final class GameViewModel {
     private(set) var isAnimating = false
     private let audio = AudioManager.shared
 
+    // Tutorial
+    var tutorial: TutorialManager?
+    var isTutorialMode: Bool { tutorial != nil && !(tutorial?.isComplete ?? true) }
+
+    // Blocked move feedback
+    private(set) var blockedFeedbackActive = false
+    private(set) var blockedPath: [Int] = []
+
     // Turn timer
     static let turnDuration: TimeInterval = 35
     static let urgentThreshold: TimeInterval = 10
@@ -33,12 +41,23 @@ final class GameViewModel {
 
     var validSlides: [Slide] {
         guard isTilePhase, isPlayerTurn else { return [] }
-        return ElephantLogic.validSlides(board: board)
+        let engineSlides = ElephantLogic.validSlides(board: board)
+
+        // In tutorial mode with a forced slide, only allow that one
+        if let tutorial, !tutorial.isComplete, let forced = tutorial.forcedSlide {
+            return engineSlides.filter { $0 == forced }
+        }
+        return engineSlides
     }
 
     var validElephantMoves: [Int] {
         guard isElephantPhase, isPlayerTurn else { return [] }
-        return ElephantLogic.validMoves(from: elephantSpace)
+        let engineMoves = ElephantLogic.validMoves(from: elephantSpace)
+
+        if let tutorial, !tutorial.isComplete, let forced = tutorial.forcedElephantMove {
+            return engineMoves.filter { $0 == forced }
+        }
+        return engineMoves
     }
 
     var timerProgress: Double {
@@ -50,10 +69,18 @@ final class GameViewModel {
     }
 
     var showTimer: Bool {
-        isPlayerTurn && !isComplete
+        isPlayerTurn && !isComplete && !isTutorialMode
     }
 
     var statusText: String {
+        // In tutorial mode, use tutorial text
+        if let tutorial, !tutorial.isComplete {
+            if tutorial.showingBotMessage, let msg = tutorial.currentStep.afterBotText {
+                return msg
+            }
+            return tutorial.currentStep.instructionText
+        }
+
         if isComplete {
             if victorIds.isEmpty { return "Draw!" }
             if victorIds.count > 1 { return "Draw — both players win!" }
@@ -69,13 +96,75 @@ final class GameViewModel {
         return "Move the elephant"
     }
 
-    init(game: GameState) {
+    init(game: GameState, tutorial: TutorialManager? = nil) {
         self.game = game
+        self.tutorial = tutorial
+    }
+
+    // MARK: - Blocked Move Feedback
+
+    /// Attempt a slide — if blocked, show visual feedback. Returns true if the move was executed.
+    func attemptSlide(slide: Slide) {
+        let allValid = ElephantLogic.validSlides(board: board)
+
+        if allValid.contains(slide) {
+            // Valid move — but is it allowed in tutorial?
+            if let tutorial, !tutorial.isComplete {
+                if let forced = tutorial.forcedSlide, slide != forced {
+                    // Not the forced move — don't execute, but no blocked feedback
+                    return
+                }
+                // It's a "try blocked" step — the slide shouldn't be valid here
+                // (handled below)
+            }
+            placeTile(slide: slide)
+        } else {
+            // Blocked! Show feedback
+            showBlockedFeedback(slide: slide)
+
+            // In tutorial, advance past the blocked step
+            if let tutorial, !tutorial.isComplete, tutorial.blockedSlideToTry != nil {
+                Task { @MainActor in
+                    try? await Task.sleep(for: .milliseconds(800))
+                    tutorial.advancePastBlock()
+                }
+            }
+        }
+    }
+
+    private func showBlockedFeedback(slide: Slide) {
+        let path = slide.path
+        guard !path.isEmpty else { return }
+
+        // Find which spaces in the path are relevant to the block
+        var blocked: [Int] = []
+        for space in path {
+            if board.elephantSpace == space {
+                blocked.append(space)
+                break
+            }
+            if board.isOccupied(space) {
+                blocked.append(space)
+            }
+        }
+        if blocked.isEmpty {
+            blocked = [board.elephantSpace]
+        }
+
+        blockedPath = blocked
+        blockedFeedbackActive = true
+
+        Task { @MainActor in
+            try? await Task.sleep(for: .milliseconds(600))
+            blockedFeedbackActive = false
+            blockedPath = []
+        }
     }
 
     // MARK: - Timer
 
     func startTimer() {
+        guard !isTutorialMode else { return }
         stopTimer()
         turnTimeRemaining = Self.turnDuration
         timerTask = Task { @MainActor in
@@ -96,16 +185,8 @@ final class GameViewModel {
         timerTask = nil
     }
 
-    private func resetTimer() {
-        stopTimer()
-        if isPlayerTurn {
-            startTimer()
-        }
-    }
-
     private func handleTimerExpired() {
         guard !isComplete else { return }
-        // Forfeit — opponent wins
         game.status = .complete
         game.victorIds = [game.opponent.id]
         stopTimer()
@@ -116,6 +197,7 @@ final class GameViewModel {
 
     func placeTile(slide: Slide) {
         guard isPlayerTurn, isTilePhase else { return }
+        guard validSlides.contains(slide) else { return }
         stopTimer()
         isAnimating = true
         game = GameEngine.placeTile(slide: slide, game: game)
@@ -127,12 +209,19 @@ final class GameViewModel {
 
             if isComplete {
                 playEndGameSound()
+                return
+            }
+
+            // Tutorial: advance after player places tile
+            if let tutorial, !tutorial.isComplete {
+                tutorial.advance()
             }
         }
     }
 
     func moveElephant(to space: Int) {
         guard isPlayerTurn, isElephantPhase else { return }
+        guard validElephantMoves.contains(space) else { return }
         let previousSpace = elephantSpace
         stopTimer()
         isAnimating = true
@@ -143,6 +232,16 @@ final class GameViewModel {
             try? await Task.sleep(for: .milliseconds(700))
             isAnimating = false
 
+            // Tutorial: advance after player moves elephant
+            if let tutorial, !tutorial.isComplete {
+                tutorial.advance()
+                // If next step is a bot turn, execute it
+                if !tutorial.isComplete && !tutorial.currentStep.isPlayerTurn {
+                    executeTutorialBotTurn()
+                }
+                return
+            }
+
             if !isComplete && game.currentPlayer.isBot {
                 executeBotTurn()
             } else if isPlayerTurn {
@@ -150,6 +249,8 @@ final class GameViewModel {
             }
         }
     }
+
+    // MARK: - Bot Turns
 
     func executeBotTurn() {
         guard game.currentPlayer.isBot, !isComplete else { return }
@@ -159,7 +260,8 @@ final class GameViewModel {
         Task { @MainActor in
             try? await Task.sleep(for: .milliseconds(Int.random(in: 500...1000)))
 
-            guard let move = BotAI.selectMove(game: game) else {
+            let difficulty: BotDifficulty = (tutorial?.isComplete == true) ? .easy : .hard
+            guard let move = BotAI.selectMove(game: game, difficulty: difficulty) else {
                 isAnimating = false
                 return
             }
@@ -189,13 +291,59 @@ final class GameViewModel {
         }
     }
 
+    private func executeTutorialBotTurn() {
+        guard let tutorial, let move = tutorial.scriptedBotMove else { return }
+        isAnimating = true
+
+        Task { @MainActor in
+            try? await Task.sleep(for: .milliseconds(800))
+
+            game = GameEngine.placeTile(slide: move.slide, game: game)
+            audio.playSlide()
+            try? await Task.sleep(for: .milliseconds(700))
+
+            guard !isComplete else {
+                isAnimating = false
+                return
+            }
+
+            let prevElephant = game.board.elephantSpace
+            game = GameEngine.moveElephant(to: move.elephantMove, game: game)
+            if move.elephantMove != prevElephant { audio.playElephant() }
+            try? await Task.sleep(for: .milliseconds(700))
+
+            isAnimating = false
+
+            // Show bot message, then advance
+            tutorial.showBotMessage()
+            try? await Task.sleep(for: .milliseconds(2000))
+            tutorial.advance()
+        }
+    }
+
+    // MARK: - Game Management
+
     func startNewBotGame() {
         stopTimer()
         let playerId = game.player1.id
         let playerName = game.player1.name
+        tutorial = nil
         game = GameEngine.newBotGame(playerId: playerId, playerName: playerName)
         if isPlayerTurn {
             startTimer()
+        }
+    }
+
+    func advanceTutorialInfo() {
+        // For info-only steps (showVictoryShape, explainTiles), advance on tap
+        guard let tutorial, !tutorial.isComplete else { return }
+        let step = tutorial.currentStep
+        if step == .showVictoryShape || step == .explainTiles {
+            tutorial.advance()
+            // If tutorial is now complete (freePlay), the game continues with easy bot
+            if tutorial.isComplete && game.currentPlayer.isBot {
+                executeBotTurn()
+            }
         }
     }
 

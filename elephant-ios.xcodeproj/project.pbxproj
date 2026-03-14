@@ -25,6 +25,7 @@
 		36C0AD292F65B00100AB835C /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD192F65B00100AB835C /* PlayerState.swift */; };
 		36C0AD2A2F65B00100AB835C /* MoveRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD1A2F65B00100AB835C /* MoveRecord.swift */; };
 		36C0AD402F65B10000AB835C /* BotAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD3F2F65B10000AB835C /* BotAI.swift */; };
+		36C0ADC02F65B70000AB835C /* TutorialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0ADBF2F65B70000AB835C /* TutorialManager.swift */; };
 		36C0AD702F65B20000AB835C /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD6F2F65B20000AB835C /* AudioManager.swift */; };
 		36C0AD902F65B40000AB835C /* VictoryShapeIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD8F2F65B40000AB835C /* VictoryShapeIcon.swift */; };
 		36C0AD922F65B40000AB835C /* GameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD912F65B40000AB835C /* GameStore.swift */; };
@@ -80,6 +81,7 @@
 		36C0AD192F65B00100AB835C /* PlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerState.swift; sourceTree = "<group>"; };
 		36C0AD1A2F65B00100AB835C /* MoveRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveRecord.swift; sourceTree = "<group>"; };
 		36C0AD3F2F65B10000AB835C /* BotAI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotAI.swift; sourceTree = "<group>"; };
+		36C0ADBF2F65B70000AB835C /* TutorialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialManager.swift; sourceTree = "<group>"; };
 		36C0AD6F2F65B20000AB835C /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		36C0AD8F2F65B40000AB835C /* VictoryShapeIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryShapeIcon.swift; sourceTree = "<group>"; };
 		36C0AD912F65B40000AB835C /* GameStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				36C0AD162F65B00100AB835C /* GameEngine.swift */,
 				36C0AD172F65B00100AB835C /* Rating.swift */,
 				36C0AD3F2F65B10000AB835C /* BotAI.swift */,
+				36C0ADBF2F65B70000AB835C /* TutorialManager.swift */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				36C0AD292F65B00100AB835C /* PlayerState.swift in Sources */,
 				36C0AD2A2F65B00100AB835C /* MoveRecord.swift in Sources */,
 				36C0AD402F65B10000AB835C /* BotAI.swift in Sources */,
+				36C0ADC02F65B70000AB835C /* TutorialManager.swift in Sources */,
 				36C0AD702F65B20000AB835C /* AudioManager.swift in Sources */,
 				36C0AD902F65B40000AB835C /* VictoryShapeIcon.swift in Sources */,
 				36C0AD922F65B40000AB835C /* GameStore.swift in Sources */,
