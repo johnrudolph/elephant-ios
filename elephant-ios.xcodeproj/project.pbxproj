@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		36C0ACE32F65AE6000AB835C /* elephant_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0ACE22F65AE6000AB835C /* elephant_iosApp.swift */; };
-		36C0ACE52F65AE6000AB835C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0ACE42F65AE6000AB835C /* ContentView.swift */; };
-		36C0ACE72F65AE6200AB835C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36C0ACE62F65AE6200AB835C /* Assets.xcassets */; };
+36C0ACE72F65AE6200AB835C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36C0ACE62F65AE6200AB835C /* Assets.xcassets */; };
 		36C0ACEB2F65AE6200AB835C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36C0ACEA2F65AE6200AB835C /* Preview Assets.xcassets */; };
 		36C0ACF52F65AE6300AB835C /* elephant_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0ACF42F65AE6300AB835C /* elephant_iosTests.swift */; };
 		36C0ACFF2F65AE6300AB835C /* elephant_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0ACFE2F65AE6300AB835C /* elephant_iosUITests.swift */; };
@@ -29,6 +28,8 @@
 		36C0AD702F65B20000AB835C /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD6F2F65B20000AB835C /* AudioManager.swift */; };
 		36C0AD902F65B40000AB835C /* VictoryShapeIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD8F2F65B40000AB835C /* VictoryShapeIcon.swift */; };
 		36C0AD922F65B40000AB835C /* GameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD912F65B40000AB835C /* GameStore.swift */; };
+		36C0ADA02F65B50000AB835C /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD9F2F65B50000AB835C /* UserPreferences.swift */; };
+		36C0ADB02F65B60000AB835C /* TutorialOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0ADAF2F65B60000AB835C /* TutorialOverlay.swift */; };
 		36C0AD572F65AE6000AB835C /* GameBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD502F65AE6000AB835C /* GameBoardView.swift */; };
 		36C0AD582F65AE6000AB835C /* GameScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD512F65AE6000AB835C /* GameScreenView.swift */; };
 		36C0AD592F65AE6000AB835C /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C0AD522F65AE6000AB835C /* TileView.swift */; };
@@ -59,8 +60,7 @@
 /* Begin PBXFileReference section */
 		36C0ACDF2F65AE6000AB835C /* elephant-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "elephant-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36C0ACE22F65AE6000AB835C /* elephant_iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = elephant_iosApp.swift; sourceTree = "<group>"; };
-		36C0ACE42F65AE6000AB835C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		36C0ACE62F65AE6200AB835C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+36C0ACE62F65AE6200AB835C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36C0ACE82F65AE6200AB835C /* elephant_ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = elephant_ios.entitlements; sourceTree = "<group>"; };
 		36C0ACEA2F65AE6200AB835C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		36C0ACF02F65AE6300AB835C /* elephant-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "elephant-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +83,8 @@
 		36C0AD6F2F65B20000AB835C /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		36C0AD8F2F65B40000AB835C /* VictoryShapeIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryShapeIcon.swift; sourceTree = "<group>"; };
 		36C0AD912F65B40000AB835C /* GameStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
+		36C0AD9F2F65B50000AB835C /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		36C0ADAF2F65B60000AB835C /* TutorialOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialOverlay.swift; sourceTree = "<group>"; };
 		36C0AD502F65AE6000AB835C /* GameBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoardView.swift; sourceTree = "<group>"; };
 		36C0AD512F65AE6000AB835C /* GameScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenView.swift; sourceTree = "<group>"; };
 		36C0AD522F65AE6000AB835C /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
@@ -148,7 +150,6 @@
 				36C0AD712F65B20000AB835C /* Audio */,
 				36C0AD942F65B40000AB835C /* Persistence */,
 				36C0ACE22F65AE6000AB835C /* elephant_iosApp.swift */,
-				36C0ACE42F65AE6000AB835C /* ContentView.swift */,
 				36C0ACE62F65AE6200AB835C /* Assets.xcassets */,
 				36C0ACE82F65AE6200AB835C /* elephant_ios.entitlements */,
 				36C0ACE92F65AE6200AB835C /* Preview Content */,
@@ -201,6 +202,7 @@
 				36C0AD542F65AE6000AB835C /* ElephantMoveOverlay.swift */,
 				36C0AD552F65AE6000AB835C /* PlayerInfoCard.swift */,
 				36C0AD7F2F65B30000AB835C /* TurnTimerView.swift */,
+				36C0ADAF2F65B60000AB835C /* TutorialOverlay.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -225,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				36C0AD912F65B40000AB835C /* GameStore.swift */,
+				36C0AD9F2F65B50000AB835C /* UserPreferences.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -392,7 +395,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36C0ACE52F65AE6000AB835C /* ContentView.swift in Sources */,
 				36C0ACE32F65AE6000AB835C /* elephant_iosApp.swift in Sources */,
 				36C0AD202F65B00100AB835C /* Board.swift in Sources */,
 				36C0AD212F65B00100AB835C /* Slide.swift in Sources */,
@@ -409,6 +411,8 @@
 				36C0AD702F65B20000AB835C /* AudioManager.swift in Sources */,
 				36C0AD902F65B40000AB835C /* VictoryShapeIcon.swift in Sources */,
 				36C0AD922F65B40000AB835C /* GameStore.swift in Sources */,
+				36C0ADA02F65B50000AB835C /* UserPreferences.swift in Sources */,
+				36C0ADB02F65B60000AB835C /* TutorialOverlay.swift in Sources */,
 				36C0AD572F65AE6000AB835C /* GameBoardView.swift in Sources */,
 				36C0AD582F65AE6000AB835C /* GameScreenView.swift in Sources */,
 				36C0AD592F65AE6000AB835C /* TileView.swift in Sources */,
