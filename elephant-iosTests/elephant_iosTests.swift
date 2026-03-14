@@ -488,3 +488,99 @@ final class RatingTests: XCTestCase {
         XCTAssertLessThanOrEqual(newRating, 3000)
     }
 }
+
+final class BotAITests: XCTestCase {
+
+    func testBotSelectsMove() {
+        let game = GameEngine.newBotGame(playerId: "p1", playerName: "Test", playerGoesFirst: false)
+        // Bot goes first
+        let move = BotAI.selectMove(game: game)
+        XCTAssertNotNil(move)
+    }
+
+    func testBotTakesWinningMove() {
+        var game = GameEngine.newBotGame(playerId: "p1", playerName: "Test", playerGoesFirst: false)
+        game.victoryShape = .line
+
+        // Set up board where bot can win by sliding into space 13 downward
+        // to complete column 1: spaces 1, 5, 9, 13
+        game.board.spaces[5] = PlayerState.botId
+        game.board.spaces[9] = PlayerState.botId
+        game.board.spaces[13] = PlayerState.botId
+        // Bot needs to slide into space 1 going down to complete [1, 5, 9, 13]
+        // But that would push tiles. Let's set up a horizontal line instead.
+        // Clear and set up: bot has spaces 1, 2, 3 and needs space 4
+        game.board = .empty
+        game.board.spaces[1] = PlayerState.botId
+        game.board.spaces[2] = PlayerState.botId
+        game.board.spaces[3] = PlayerState.botId
+        game.board.elephantSpace = 10 // out of the way
+
+        let move = BotAI.selectMove(game: game, difficulty: .hard)
+        XCTAssertNotNil(move)
+
+        // The winning move should slide into space 4 from the right
+        // (entry=4, direction=.left, path=[4,3,2,1]) won't work — that pushes existing tiles
+        // Actually the bot needs to place at space 4.
+        // Slide right from entry 1 path=[1,2,3,4] would push everything.
+        // Slide left from entry 4 path=[4,3,2,1] would push everything.
+        // The only way to place at 4 without disturbing is:
+        // Slide down from entry 4, path=[4,8,12,16] — places at space 4!
+        // Or slide up from entry 16, col 3: path=[16,12,8,4] — places at 16 not 4
+        // Slide down from 4: path=[4,8,12,16] — places new tile at 4. Yes!
+        let result = SlideExecution.execute(slide: move!.slide, playerId: PlayerState.botId, board: game.board)
+        let victory = VictoryDetection.check(playerId: PlayerState.botId, shape: .line, board: result.board)
+        XCTAssertNotNil(victory, "Bot should pick the winning move")
+    }
+
+    func testAdjacentTileCount() {
+        var board = Board.empty
+        // Place tiles at 1, 2 (adjacent) and 9 (isolated)
+        board.spaces[1] = "p1"
+        board.spaces[2] = "p1"
+        board.spaces[9] = "p1"
+        let count = BotAI.adjacentTileCount(for: "p1", board: board)
+        XCTAssertEqual(count, 1) // only 1-2 adjacency
+    }
+
+    func testHasCheck() {
+        var board = Board.empty
+        // 3 of 4 spaces for a square at top-left: 1, 2, 5 (missing 6)
+        board.spaces[1] = "p1"
+        board.spaces[2] = "p1"
+        board.spaces[5] = "p1"
+        board.elephantSpace = 10 // not blocking space 6
+        XCTAssertTrue(BotAI.hasCheck(playerId: "p1", shape: .square, board: board))
+    }
+
+    func testNoCheckWhenMissingSpaceOccupied() {
+        var board = Board.empty
+        // 3 of 4 spaces for a square: 1, 2, 5 but space 6 is occupied by opponent
+        board.spaces[1] = "p1"
+        board.spaces[2] = "p1"
+        board.spaces[5] = "p1"
+        board.spaces[6] = "p2" // blocked
+        board.elephantSpace = 10
+        XCTAssertFalse(BotAI.hasCheck(playerId: "p1", shape: .square, board: board))
+    }
+
+    func testNoCheckWhenElephantBlocks() {
+        var board = Board.empty
+        board.spaces[1] = "p1"
+        board.spaces[2] = "p1"
+        board.spaces[5] = "p1"
+        board.elephantSpace = 6 // elephant on the missing space
+        XCTAssertFalse(BotAI.hasCheck(playerId: "p1", shape: .square, board: board))
+    }
+
+    func testDifficultySelection() {
+        // Hard always picks the best move — run it multiple times, should be deterministic
+        // (modulo tie-breaking from shuffle)
+        let game = GameEngine.newBotGame(playerId: "p1", playerName: "Test", playerGoesFirst: false)
+        let move1 = BotAI.selectMove(game: game, difficulty: .hard)
+        XCTAssertNotNil(move1)
+        // Just verify it returns a valid slide
+        let validSlides = ElephantLogic.validSlides(board: game.board)
+        XCTAssertTrue(validSlides.contains(move1!.slide))
+    }
+}
